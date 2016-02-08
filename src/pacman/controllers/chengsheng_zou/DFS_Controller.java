@@ -21,7 +21,7 @@ public class DFS_Controller extends Controller<MOVE>{
 	public MOVE getMove(Game game, long timeDue) {
 		// TODO Auto-generated method stub
 		if(savedMove.size() == 0){
-			savedMove = dfs_simon(game, 15);
+			savedMove = dfs_simon(game, 20);
 		}
 		MOVE m = savedMove.get(0);
 		savedMove.remove(0);
@@ -42,12 +42,13 @@ public class DFS_Controller extends Controller<MOVE>{
 		// search with BFS
 		while(!stack.isEmpty()){
 			PacManNode peek = stack.pop();
-			// a path is longer than maxPath
+			// record the highest score path
 			if (peek.gameState.getScore() > highScore){
 				result = peek.moveList;
 				highScore = peek.gameState.getScore();
 			}
-			if (result.size() == 0 || peek.depth <= maxDepth) {
+			//skip those path longer than maxDepth
+			if (peek.depth <= maxDepth) {
 				//keep adding children
 				Node node = curMaze.graph[peek.gameState.getPacmanCurrentNodeIndex()];
 				//loop of adding children in possible directions
@@ -72,7 +73,7 @@ public class DFS_Controller extends Controller<MOVE>{
 			}
 		}
 		
-		// in case result is empty
+		// in case result is empty, just return left move
 		if(result.size() == 0){
 			result.add(MOVE.LEFT);
 		}
