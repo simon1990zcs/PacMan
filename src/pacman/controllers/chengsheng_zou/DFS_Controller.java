@@ -15,11 +15,12 @@ import pacman.game.internal.Node;
 public class DFS_Controller extends Controller<MOVE>{
 
 	public static StarterGhosts ghosts = new StarterGhosts();
+	//instead of return one move, save the whole path to the pills. 
 	public ArrayList<MOVE> savedMove = new ArrayList<>();
 	
 	@Override
 	public MOVE getMove(Game game, long timeDue) {
-		// TODO Auto-generated method stub
+		//if the path is non-empty, then take from list, otherwise search for the path
 		if(savedMove.size() == 0){
 			savedMove = dfs_simon(game, 20);
 		}
@@ -39,7 +40,7 @@ public class DFS_Controller extends Controller<MOVE>{
 		stack.push(new PacManNode(game, 0, new ArrayList<MOVE>()));
 		moveSet.add(game.getPacmanCurrentNodeIndex());
 		
-		// search with BFS
+		// search with DFS
 		while(!stack.isEmpty()){
 			PacManNode peek = stack.pop();
 			// record the highest score path
@@ -59,12 +60,6 @@ public class DFS_Controller extends Controller<MOVE>{
 						//move discovered node index into set
 						moveSet.add(copy.getPacmanCurrentNodeIndex());
 						ArrayList<MOVE> moveList = new ArrayList<>(peek.moveList);
-						//*one more step in same direction, since there are 4 distance between 2 pills
-						// so two step as one depth is safe
-						copy.advanceGame(m, ghosts.getMove(copy, 0));
-						moveSet.add(copy.getPacmanCurrentNodeIndex());
-						moveList.add(m);
-						//*end of one more step
 						moveList.add(m);
 						PacManNode temp = new PacManNode(copy, peek.depth + 1, moveList);
 						stack.push(temp);
