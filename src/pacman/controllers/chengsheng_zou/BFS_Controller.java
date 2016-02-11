@@ -23,7 +23,7 @@ public class BFS_Controller extends Controller<MOVE>{
 	public MOVE getMove(Game game, long timeDue) {
 		// TODO Auto-generated method stub
 		if(savedMove.size() == 0){
-			savedMove = bfs_simon(game, 200);
+			savedMove = bfs_simon(game, 500);
 		}
 		MOVE m = savedMove.get(0);
 		savedMove.remove(0);

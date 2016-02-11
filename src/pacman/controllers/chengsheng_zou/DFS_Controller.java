@@ -15,7 +15,7 @@ import pacman.game.internal.Node;
 public class DFS_Controller extends Controller<MOVE>{
 
 	public static StarterGhosts ghosts = new StarterGhosts();
-	//instead of return one move, save the whole path to the pills. 
+	//instead of returning one move, save the whole path to the pills. 
 	public ArrayList<MOVE> savedMove = new ArrayList<>();
 	
 	@Override

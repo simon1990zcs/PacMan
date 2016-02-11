@@ -50,8 +50,8 @@ public class IDDFS_Controller extends Controller<MOVE> {
 				PacManNode peek = stack.pop();
 				// record the highest score path
 				if (peek.gameState.getScore() > curScore){
-					result = peek.moveList;
-					break;
+					//find a closet pill, then return
+					return peek.moveList;
 				}
 				//skip those path longer than depth
 				if (peek.depth <= depth) {
@@ -73,17 +73,10 @@ public class IDDFS_Controller extends Controller<MOVE> {
 				}
 			}
 			
-			//if result is found, then break from loop
-			if(result.size() != 0){
-				break;
-			}
-			
 		}
 		
 		// in case result is not found, beyong maxDepth, then adding left instead
-		if(result.size() == 0){
-			result.add(MOVE.LEFT);
-		}
+		result.add(MOVE.LEFT);
 		return result;
 	}
 
