@@ -12,6 +12,7 @@ import java.util.Random;
 import pacman.controllers.Controller;
 import pacman.controllers.HumanController;
 import pacman.controllers.KeyBoardInput;
+import pacman.controllers.chengsheng_zou.Astar_Controller;
 import pacman.controllers.chengsheng_zou.BFS_Controller;
 import pacman.controllers.chengsheng_zou.DFS_Controller;
 import pacman.controllers.chengsheng_zou.IDDFS_Controller;
@@ -65,7 +66,7 @@ public class Executor
 		//run the game in asynchronous mode.
 		boolean visual=true;
 //		exec.runGameTimed(new NearestPillPacMan(),new AggressiveGhosts(),visual);
-		exec.runGameTimed(new IDDFS_Controller(),new StarterGhosts(),visual);
+		exec.runGameTimed(new Astar_Controller(),new StarterGhosts(),visual);
 //		exec.runGameTimed(new HumanController(new KeyBoardInput()),new StarterGhosts(),visual);	
 		//*/
 		

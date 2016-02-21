@@ -61,12 +61,6 @@ public class BFS_Controller extends Controller<MOVE>{
 						//move discovered node index into set
 						moveSet.add(copy.getPacmanCurrentNodeIndex());
 						ArrayList<MOVE> moveList = new ArrayList<>(peek.moveList);
-						//*one more step in same direction, since there are 4 distance between 2 pills
-						// so two step as one depth is safe
-						copy.advanceGame(m, ghosts.getMove(copy, 0));
-						moveSet.add(copy.getPacmanCurrentNodeIndex());
-						moveList.add(m);
-						//*end of one more step
 						moveList.add(m);
 						PacManNode temp = new PacManNode(copy, peek.depth + 1, moveList);
 						queue.offer(temp);
