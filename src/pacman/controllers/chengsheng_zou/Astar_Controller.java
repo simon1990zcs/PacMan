@@ -1,5 +1,6 @@
 package pacman.controllers.chengsheng_zou;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -15,11 +16,13 @@ import pacman.game.Constants.MOVE;
 import pacman.game.internal.Maze;
 import pacman.game.internal.Node;
 import pacman.game.Game;
+import pacman.game.GameView;
 
 public class Astar_Controller extends Controller<MOVE> {
 
 	public static StarterGhosts ghosts = new StarterGhosts();
-	public ArrayList<MOVE> savedMove = new ArrayList<>();
+	private ArrayList<MOVE> savedMove = new ArrayList<>();
+	private int savedObjective = 0;
 	// comparator for Priority queue used in A star search
 	private static Comparator<AstarPacmanNode> CPT = new Comparator<AstarPacmanNode>() {
 		@Override
@@ -35,12 +38,15 @@ public class Astar_Controller extends Controller<MOVE> {
 			savedMove.clear();
 		}
 		if(savedMove.size() == 0){
-			int des = getObjective(game);
-			savedMove = Astar_simon(game, des);
+			savedObjective = getObjective(game);
+			savedMove = Astar_simon(game, savedObjective);
 		}
+		
+		//draw a point for the destination
+		GameView.addPoints(game, Color.RED, savedObjective);
+		
 		MOVE m = savedMove.get(0);
 		savedMove.remove(0);
-		System.out.println("the next move : " + m);
 		return m;
 	}
 	
@@ -60,7 +66,6 @@ public class Astar_Controller extends Controller<MOVE> {
 			 for(int i = 0; i < dest.length; i++){
 				 dest[i] = edibleGhost.get(i);
 			 }
-			 System.out.println("go after a ghost");
 			
 		} else {
 			//if no edible ghost is available, then search for a power pill if there is any
@@ -69,8 +74,6 @@ public class Astar_Controller extends Controller<MOVE> {
 			if (dest.length == 0){
 				// if no more power pills, then go after normal pills
 				dest = game.getActivePillsIndices();
-			} else {
-				System.out.println("go after a power pills");
 			}
 		} 
 
