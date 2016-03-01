@@ -91,7 +91,7 @@ public class Astar_Controller extends Controller<MOVE> {
 		queue.offer(new AstarPacmanNode(game, 0, new ArrayList<MOVE>(), destination));
 		moveSet.add(game.getPacmanCurrentNodeIndex());
 		
-		// search with BFS
+		// search with A star search
 		while(!queue.isEmpty()){
 			// get the min estimated cost node
 			AstarPacmanNode peek = queue.poll();
