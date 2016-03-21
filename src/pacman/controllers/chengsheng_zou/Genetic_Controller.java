@@ -49,6 +49,10 @@ public class Genetic_Controller extends Controller<MOVE> {
 				}
 				children.add(child);
 			}
+			children.addAll(parents);
+			children.sort(null);
+			//pick top 10 as parents, clear out other 10
+			children.subList(10, 20).clear();
 			parents = children;
 		}
 		

@@ -1,7 +1,6 @@
 package pacman.controllers.chengsheng_zou;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
@@ -15,13 +14,6 @@ public class EvoComp_Controller extends Controller<MOVE> {
 
 	public static StarterGhosts ghosts = new StarterGhosts();
 	public ArrayList<MOVE> savedMove = new ArrayList<>();
-	private static Comparator<EvoPacManNode> cmp = new Comparator<EvoPacManNode>(){
-		@Override
-		public int compare(EvoPacManNode o1, EvoPacManNode o2) {
-			// descending order
-			return o2.getScore() - o1.getScore();
-		}
-	};
 	
 	@Override
 	public MOVE getMove(Game game, long timeDue) {
@@ -35,7 +27,7 @@ public class EvoComp_Controller extends Controller<MOVE> {
 	}
 	
 	private ArrayList<MOVE> evolutionComputation_simon(Game game, int maxTimes){
-		Queue<EvoPacManNode> parents = new PriorityQueue<>(10, cmp);
+		Queue<EvoPacManNode> parents = new PriorityQueue<>();
 		
 		//initialize 10 parents randomly at the first time
 		for(int i = 0; i < 10; i++){
@@ -44,7 +36,7 @@ public class EvoComp_Controller extends Controller<MOVE> {
 		
 		//evolution computation
 		for(int i = 0; i < maxTimes; i++){
-			Queue<EvoPacManNode> children = new PriorityQueue<>(15, cmp);
+			Queue<EvoPacManNode> children = new PriorityQueue<>();
 			//pick top five, then mutate twice
 			for(int j = 0; j < 5; j++){
 				EvoPacManNode temp = parents.poll();

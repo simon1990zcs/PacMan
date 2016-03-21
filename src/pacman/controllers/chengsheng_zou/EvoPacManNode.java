@@ -6,7 +6,7 @@ import java.util.Random;
 import pacman.game.Game;
 import pacman.game.Constants.MOVE;
 
-public class EvoPacManNode{
+public class EvoPacManNode implements Comparable<EvoPacManNode> {
 	Game game;
 	ArrayList<MOVE> moves;
 	private int score = -1;
@@ -70,6 +70,12 @@ public class EvoPacManNode{
 			}
 		}
 		return child;
+	}
+	
+	@Override
+	public int compareTo(EvoPacManNode o) {
+		// TODO Auto-generated method stub
+		return o.getScore() - this.getScore();
 	}
 }
 
