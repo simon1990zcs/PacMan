@@ -19,6 +19,7 @@ import pacman.controllers.chengsheng_zou.DFS_Controller;
 import pacman.controllers.chengsheng_zou.EvoComp_Controller;
 import pacman.controllers.chengsheng_zou.Genetic_Controller;
 import pacman.controllers.chengsheng_zou.IDDFS_Controller;
+import pacman.controllers.chengsheng_zou.KNear_Controller;
 import pacman.controllers.examples.AggressiveGhosts;
 import pacman.controllers.examples.Legacy;
 import pacman.controllers.examples.Legacy2TheReckoning;
@@ -69,7 +70,7 @@ public class Executor
 		//run the game in asynchronous mode.
 		boolean visual=true;
 //		exec.runGameTimed(new NearestPillPacMan(),new AggressiveGhosts(),visual);
-		exec.runGameTimed(new Genetic_Controller(),new StarterGhosts(),visual);
+		exec.runGameTimed(new KNear_Controller(),new StarterGhosts(),visual);
 //		exec.runGameTimed(new HumanController(new KeyBoardInput()),new StarterGhosts(),visual);	
 		//*/
 		
